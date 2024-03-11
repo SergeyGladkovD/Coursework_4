@@ -20,17 +20,23 @@ class AbsJSONSaver(ABC):
 
 class JSONSaver(AbsJSONSaver):
 	@staticmethod
-	def add_vacancy(self, data):
+	def add_vacancy(data):
+		""" Сохраняет информацию о вакансиях в файл. """
 		with open(os.path.join('data', 'vacancy.json'), 'a', encoding='utf 8')as file:
 			json.dump(data, file)
 
 	@staticmethod
 	def delete_vacancy():
-		with open(os.path.join('data', 'vacancy.json'), 'w', encoding='utf 8') as file:
-			json.dump({}, file)
+		""" Удаляет информацию о вакансиях в файле. """
+		with open(os.path.join('data', 'vacancy.json'), 'w', encoding='utf 8'):
+			pass
 
 	@staticmethod
 	def read_vacancy():
+		""" Выводит информацию о вакансиях в файле. """
 		with open(os.path.join('data', 'vacancy.json'), 'r', encoding='utf 8') as file:
 			data = json.load(file)
-			return data
+			if data:
+				return data
+			else:
+				print('Файл пуст.')
